@@ -244,3 +244,134 @@ int main() {
 
 }
 */
+/*
+include <iostream>
+
+class Toy
+{
+	std::string name;
+
+public:
+	Toy() : name("Some toy") {}
+
+	Toy(std::string _name) : name(_name) {}
+
+	std::string getName()
+	{
+		return name;
+	}
+
+	~Toy() {}
+};
+
+class shared_ptr_toy
+{
+	Toy* ptr = nullptr;
+	int* refCount;
+
+public:
+	shared_ptr_toy()
+	{
+		ptr = new Toy();
+		refCount = new int(1);
+	}
+
+	shared_ptr_toy(std::string _name)
+	{
+		ptr = new Toy(_name);
+		refCount = new int(1);
+	}
+
+	shared_ptr_toy(const shared_ptr_toy& other)
+	{
+		this->ptr = other.ptr;
+		this->refCount = other.refCount;
+		refIncrease();
+	}
+
+	shared_ptr_toy& operator =(const shared_ptr_toy& other)
+	{
+	if (this == &other) return *this;
+		if (this->ptr != nullptr)
+		{
+			this->refDicrease();
+		}
+
+		this->ptr = other.ptr;
+		this->refCount = other.refCount;
+		this->refIncrease();
+		return *this;
+	}
+
+	~shared_ptr_toy()
+	{
+		refDicrease();
+	}
+
+private:
+	void refIncrease()
+	{
+		++(*this->refCount);
+	}
+
+	void refDicrease()
+	{
+		--(*this->refCount);
+		if (*this->refCount == 0)
+		{
+			delete ptr;
+			delete refCount;
+		}
+	}
+};
+
+shared_ptr_toy make_shared(std::string name)
+{
+	return shared_ptr_toy(name);
+}
+
+shared_ptr_toy make_share(Toy* toy)
+{
+	return shared_ptr_toy(toy->getName());
+}
+
+class Dog
+{
+	std::string name;
+	int age = 0;
+	shared_ptr_toy lovelyToy;
+
+public:
+	Dog() : name("Some name"), age(0) {}
+
+	Dog(std::string _name) : name(_name), age(0) {}
+
+	Dog(std::string _name, int _age, shared_ptr_toy _toy) : name(_name), lovelyToy(_toy)
+	{
+		if (_age >= 0 && _age < 30)
+		{
+			age = _age;
+		}
+		else
+		{
+			age = 0;
+		}
+	}
+
+	void copyLovelyToy(const shared_ptr_toy& other)
+	{
+		this->lovelyToy = other;
+	}
+
+	~Dog() {}
+};
+
+int main()
+{
+	shared_ptr_toy ball = make_shared("Ball");
+
+	Dog a("Sharik", 10, ball);
+
+	return 0;
+}
+*/
