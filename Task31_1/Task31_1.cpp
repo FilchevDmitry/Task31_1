@@ -86,7 +86,7 @@ shared_ptr_toy make_shared_toy(const std::string& _name)
 int main()
 {
 
-	shared_ptr_toy boll=make_shared_toy("boll");
+	make_shared_toy("boll");
 	
 	
 	std::cout << "end";
