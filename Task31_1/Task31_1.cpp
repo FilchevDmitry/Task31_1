@@ -32,10 +32,10 @@ public:
 		count=new int(1);
 	};
 
-	shared_ptr_toy(const shared_ptr_toy* other)
+	shared_ptr_toy(const shared_ptr_toy& other)
 	{
-		obj = other->obj;
-		count = other->count;
+		obj = other.obj;
+		count = other.count;
 		++*count;
 	}
 	shared_ptr_toy& operator=(const shared_ptr_toy* other)
@@ -87,7 +87,7 @@ int main()
 {
 
 	shared_ptr_toy boll=make_shared_toy("boll");
-	
+	shared_ptr_toy t1 = boll;
 	
 	std::cout << "end";
 
