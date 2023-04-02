@@ -86,8 +86,8 @@ shared_ptr_toy make_shared_toy(const std::string& _name)
 int main()
 {
 
-	make_shared_toy("boll");
-	
+	shared_ptr_toy ball1= make_shared_toy("boll");
+	shared_ptr_toy ball2 = ball1;
 	
 	std::cout << "end";
 
